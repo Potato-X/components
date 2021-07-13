@@ -2,26 +2,17 @@ language: node_js
 node_js:
   - "12"
 
-cache:
-  directories:
-    - node_modules
+cache: npm
 
 install:
   - npm install
 
-script: 
-  - npm run build
+script: npm run build
 
-  after_script:
-  - cd ./dist
-  - git init
-  - git config user.name "${U_NAME}"
-  - git config user.email "${U_EMAIL}"
-  - git add .
-  - git commit -m "Update tools"
-  - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:${P_BRANCH}
-branches:
-  only:
-    - master
-env:
- global:
+deploy:
+provider: pages
+skip_cleanup: true
+github_token: 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
+local_dir: dist
+on:
+  branch: master
