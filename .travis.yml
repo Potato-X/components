@@ -1,15 +1,18 @@
 language: node_js
 node_js:
-  - "node"
+  - "12"
 
 cache: npm
+
+install:
+  - npm install
 
 script: npm run build
 
 deploy:
 provider: pages
 skip_cleanup: true
-github_token: $GITHUB_TOKEN
+github_token: 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
 local_dir: dist
 on:
   branch: master
