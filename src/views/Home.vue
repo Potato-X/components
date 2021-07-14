@@ -45,14 +45,38 @@ export default {
     asyncChangeAppName(){
       this.updateAppName()
     },
-    getInfo () {
-      getUserInfo({id:3}).then(res => {
-        console.log('res:', res)
+    getInfo1 () {
+      return new Promise((resolve, reject) => {
+        getUserInfo({id:3}).then(res => {
+          console.log('res:', res.data)
+          resolve(res.data)
+        })
       })
+
+    },
+    getInfo2 () {
+      return new Promise((resolve, reject) => {
+        getUserInfo({id:3}).then(res => {
+          console.log('res:', res.data)
+          resolve(res.data)
+        })
+      })
+
+    },
+    getInfo3 () {
+      return new Promise((resolve, reject) => {
+        getUserInfo({id:3}).then(res => {
+          console.log('res:', res.data)
+          resolve(res.data)
+        })
+      })
+
     }
   },
   created(){
-    this.getInfo()
+    Promise.all([getUserInfo({id:3}),getUserInfo({id:3}),getUserInfo({id:3})]).then(res=>{
+      console.log('all reses:', res)
+    })
   },
   // beforeRouteEnter (to, from, next) { //组件导航守卫,触发时机为组件创建之前，故获取不到this
   //   // ...
